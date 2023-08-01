@@ -28,13 +28,27 @@ class StudentProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> updateStudent(StudentModel student) async {
-    await student.save();
-    int index = _students.indexWhere((s) => s.key == student.key);
-    if (index >= 0) {
-      _students[index] = student;
-      notifyListeners();
+  Future<void> getallStudents() async {
+    _students.clear();
+    _students.addAll(_studentsBox.values);
+  }
+
+  // Future<void> updateStudent(StudentModel student) async {
+  //   await student.save();
+  //   int index = _students.indexWhere((s) => s.id == student.id);
+  //   if (index >= -1) {
+  //     _students[index] = student;
+  //     notifyListeners();
+  //   }
+  // }
+
+  Future<void> editStudent(int id, StudentModel value) async {
+    await _studentsBox.put(id, value);
+    int index = _students.indexWhere((s) => s.id == id);
+    if (index >= -1) {
+      _students[index] = value;
     }
+    notifyListeners();
   }
 
   Future<void> deleteStudent(StudentModel student) async {

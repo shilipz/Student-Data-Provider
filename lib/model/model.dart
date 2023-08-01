@@ -11,12 +11,14 @@ class StudentModel extends HiveObject {
   final String subject;
   @HiveField(3)
   final String phone;
+  @HiveField(4)
+  final int? id;
 
   StudentModel({
     required this.name,
     required this.age,
     required this.subject,
     required this.phone,
-    required key,
+    this.id,
   });
 }

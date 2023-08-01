@@ -21,7 +21,6 @@ class StudentModelAdapter extends TypeAdapter<StudentModel> {
       age: fields[1] as int,
       subject: fields[2] as String,
       phone: fields[3] as String,
-      key: null,
     );
   }
 

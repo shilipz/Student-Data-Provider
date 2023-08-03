@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => StudentProvider(),
-      child: MaterialApp(
+      child: const MaterialApp(
         title: 'Student Management App',
         home: StudentListScreen(),
       ),

@@ -1,51 +1,26 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:student_management_app/model/model.dart';
 
 import '../student_provider.dart';
 
-class StudentAddScreen extends StatefulWidget {
+class StudentAddScreen extends StatelessWidget {
   final StudentModel? student;
 
   StudentAddScreen({super.key, this.student});
 
-  @override
+  final TextEditingController _nameController = TextEditingController();
 
-  // ignore: library_private_types_in_public_api
-  _StudentEditScreenState createState() => _StudentEditScreenState();
-}
+  final TextEditingController _ageController = TextEditingController();
 
-class _StudentEditScreenState extends State<StudentAddScreen> {
-  late TextEditingController _nameController;
-  late TextEditingController _ageController;
-  late TextEditingController _subjectController;
-  late TextEditingController _phoneController;
+  final TextEditingController _subjectController = TextEditingController();
+
+  final TextEditingController _phoneController = TextEditingController();
+
   ImageProvider<Object>? _image;
 
-  @override
-  void initState() {
-    super.initState();
-    _nameController = TextEditingController(text: widget.student?.name ?? '');
-    _ageController =
-        TextEditingController(text: widget.student?.age.toString() ?? '');
-
-    _subjectController =
-        TextEditingController(text: widget.student?.subject ?? '');
-    _phoneController = TextEditingController(text: widget.student?.phone ?? '');
-  }
-
   // @override
-  // void dispose() {
-  //   _nameController.dispose();
-  //   _ageController.dispose();
-  //   _subjectController.dispose();
-  //   _phoneController.dispose();
-  //   super.dispose();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +57,7 @@ class _StudentEditScreenState extends State<StudentAddScreen> {
                 onPressed: () => _saveStudent(context),
                 child: const Text('Save'),
               ),
-              if (widget.student != null)
+              if (student != null)
                 ElevatedButton(
                   onPressed: () => _deleteStudent(context),
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
@@ -155,7 +130,7 @@ class _StudentEditScreenState extends State<StudentAddScreen> {
   void _deleteStudent(BuildContext context) {
     final studentProvider =
         Provider.of<StudentProvider>(context, listen: false);
-    studentProvider.deleteStudent(widget.student!);
+    studentProvider.deleteStudent(student!);
     Navigator.pop(context);
   }
 }

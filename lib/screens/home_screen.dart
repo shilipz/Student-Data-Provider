@@ -24,7 +24,14 @@ class StudentListScreen extends StatelessWidget {
               final student = value.students[index];
               return GestureDetector(
                 onTap: () {
-                  return _navigateToEditScreen(context, student, student.key);
+                  return _navigateToEditScreen(
+                      context,
+                      student,
+                      student.key,
+                      student.age,
+                      student.name,
+                      student.subject,
+                      student.phone);
                 },
                 child: ListTile(
                     leading: CircleAvatar(
@@ -41,7 +48,13 @@ class StudentListScreen extends StatelessWidget {
                           color: Colors.green,
                           icon: const Icon(Icons.edit),
                           onPressed: () => _navigateToEditScreen(
-                              context, student, student.key),
+                              context,
+                              student,
+                              student.key,
+                              student.age,
+                              student.name,
+                              student.phone,
+                              student.subject),
                         ),
                         IconButton(
                           color: Colors.red,
@@ -70,11 +83,16 @@ void _navigateToAddScreen(BuildContext context) {
   );
 }
 
-void _navigateToEditScreen(BuildContext context, StudentModel student, int id) {
+void _navigateToEditScreen(BuildContext context, StudentModel student, int id,
+    int age, String name, String phone, String subject) {
   Navigator.push(
     context,
     MaterialPageRoute(
         builder: (context) => StudentEditScreen(
+              age: age,
+              name: name,
+              phone: phone,
+              subject: subject,
               student: student,
               id: id,
             )),

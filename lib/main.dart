@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:student_management_app/screens/home_screen.dart';
 import 'model/model.dart';
 import 'student_provider.dart';
+// testing
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
